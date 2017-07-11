@@ -1,0 +1,32 @@
+body {
+  background-color: Silver;
+}
+
+header {
+  border-style: solid;
+  border-radius: 10px;
+  background-color: MediumSeaGreen;
+}
+
+h1 {
+  text-align: center;
+  font-family: sans-serif;
+  font-stretch: semi-expanded;
+  color: LightGray;
+}
+
+h2 {
+  float: left;
+  display: inline;
+  font-size: 30px;
+}
+
+p {
+  margin: 10px;
+  display: inline-block;
+  padding: 10px;
+  font-size: 18px;
+  border-style: solid;
+  border-radius: 15px;
+  background-color: LightGray;
+}
