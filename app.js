@@ -125,9 +125,9 @@ if (wantToPlay === "n" || wantToPlay === "no") {
 
     // triesRemaining--;
 
-    // while(isNaN(guessedNum)) {
-    //   guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
-    // }
+    while(isNaN(guessedNum)) {
+      guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
+    }
 
     if (guessedNum < 1 || guessedNum > 20) {
       // triesRemaining--;
@@ -147,9 +147,9 @@ if (wantToPlay === "n" || wantToPlay === "no") {
       // alert("That's right! I was born on the 13th. You've gotten " + numCorrect + " question(s) correct so far.");
     }
 
-    // while(isNaN(guessedNum)) {
-    //   guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
-    // }
+    while(isNaN(guessedNum)) {
+      guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
+    }
 
   }
 
@@ -185,6 +185,6 @@ if (wantToPlay === "n" || wantToPlay === "no") {
   if (numCorrect === 0) {
     alert("You got 0 questions correct, " + user + ". Better luck next time!");
   } else {
-    alert("Good job " + user + " you got " + numCorrect + " out of 7 question(s) correct!");
+    alert("Good job " + user + " you got " + numCorrect + " out of 7 questions correct!");
   }
 }
