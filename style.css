@@ -1,3 +1,8 @@
+* {
+  padding: 5px;
+  margin: 5px 0px;
+}
+
 body {
   background-color: Silver;
 }
@@ -15,18 +20,36 @@ h1 {
   color: LightGray;
 }
 
-h2 {
-  float: left;
-  display: inline;
-  font-size: 30px;
-}
-
 p {
   margin: 10px;
-  display: inline-block;
+  /*display: inline-block;*/
   padding: 10px;
   font-size: 18px;
   border-style: solid;
   border-radius: 15px;
   background-color: LightGray;
+}
+
+#bio {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+#education {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+#work-experience {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+#cities {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+li {
+  margin-left: 20px;
 }
