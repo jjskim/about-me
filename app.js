@@ -115,32 +115,49 @@ if (wantToPlay === "n" || wantToPlay === "no") {
   // Question 6
   var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You have 4 tries"));
 
-  while(isNaN(guessedNum)) {
-    guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
-  }
+  // while(isNaN(guessedNum)) {
+  //   guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
+  // }
 
-  var triesRemaining = 4;
+  var triesRemaining = 3;
 
-  while (triesRemaining > 1) {
+  while (triesRemaining > 0) {
+
+    // triesRemaining--;
+
+    // while(isNaN(guessedNum)) {
+    //   guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
+    // }
 
     if (guessedNum < 1 || guessedNum > 20) {
-      triesRemaining--;
+      // triesRemaining--;
       guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
+      triesRemaining--;
     } else if (guessedNum > 13) {
-      triesRemaining--;
+      // triesRemaining--;
       guessedNum = parseInt(prompt("Try lower. You have " + triesRemaining + " guess(es) left."));
-    } else if (guessedNum < 13) {
       triesRemaining--;
+    } else if (guessedNum < 13) {
+      // triesRemaining--;
       guessedNum = parseInt(prompt("Try higher. You have " + triesRemaining + " guess(es) left."));
+      triesRemaining--;
     } else if (guessedNum === 13) {
-      triesRemaining = -1;
-      numCorrect++;
-      alert("That's right! I was born on the 13th. You've gotten " + numCorrect + " question(s) correct so far.");
+      triesRemaining = -5;
+      // numCorrect++;
+      // alert("That's right! I was born on the 13th. You've gotten " + numCorrect + " question(s) correct so far.");
     }
 
-    if (triesRemaining === 1) {
-      alert("You're out of guesses! My favorite number is 13.");
-    }
+    // while(isNaN(guessedNum)) {
+    //   guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
+    // }
+
+  }
+
+  if (triesRemaining === 0 && guessedNum !== 13) {
+    alert("You're out of guesses! My favorite number is 13.");
+  } else {
+    numCorrect++;
+    alert("That's right! I was born on the 13th. You've gotten " + numCorrect + " question(s) correct so far.");
   }
 
   // // Question 7
