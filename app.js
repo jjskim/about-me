@@ -109,6 +109,57 @@ if (wantToPlay === "n" || wantToPlay === "no") {
     alert("No, but maybe someday. You got " + numCorrect + " question(s) correct.");
   } else {
     numCorrect++;
-    alert("Correct. I don't have any pets right now, maybe someday. You got " + numCorrect + " question(s) correct.");
+    alert("Correct. I don't have any pets right now, maybe someday. You've gotten " + numCorrect + " question(s) correct so far.");
+  }
+
+  // Question 6
+  var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You have 4 tries"));
+
+  while(guessedNum === NaN) {
+    guessedNum = parseInt(prompt("Yo, that's not a number! Please enter a number.");
+  }
+
+  var triesRemaining = 4;
+
+  while (triesRemaining > 0) {
+    if (guessedNum < 1 || guessedNum > 20) {
+      triesRemaining--;
+      guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
+    } else if (guessedNum > 13) {
+      triesRemaining--;
+      guessedNum = parseInt(prompt("Try lower. You have " + triesRemaining + " guess(es) left."));
+    } else if (guessedNum < 13) {
+      triesRemaining--;
+      guessedNum = parseInt(prompt("Try higher. You have " + triesRemaining + "guess(es) left."));
+    } else if (guessedNum === 13) {
+      triesRemaining = 0;
+      numCorrect++;
+      alert("That's right! I was born on the 13th. You've gotten " + numCorrect + " question(s) correct so far.");
+    }
+
+  }
+
+  // Question 7
+  var sports = ["basketball", "boxing", "soccer", "tennis"];
+  var sportsGuess = prompt("Last question: I love watching sports. Can you guess one of my favorites?").toLowerCase();
+
+  var sportGuessesLeft = 6;
+
+  while (sportGuessesLeft > 0) {
+    if (sports.indexOf(sportsGuess) === -1) {
+      sportGuessesLeft--
+      sportsGuess = prompt("Nope, that's not one of them. You have " + sportGuessesLeft + "guess(es) left.").toLowerCase();
+    } else {
+      sportGuessesLeft = 0;
+      numCorrect++;
+      alert("Yep correct! My favorite sports are basketball, boxing, soccer, and tennis");
+    }
+  }
+
+  // End of game message
+  if (numCorrect === 0) {
+    alert("You got 0 questions correct, " + user + ". Better luck next time!");
+  } else {
+    alert("Good job " + user + " you got " + numCorrect + " out of 7 question(s) correct!");
   }
 }
