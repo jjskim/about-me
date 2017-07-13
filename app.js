@@ -126,31 +126,23 @@ if (wantToPlay === "n" || wantToPlay === "no") {
 
     if (guessedNum < 1 || guessedNum > 20) { // User guesses out of range
       guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
-      triesRemaining--;
     } else if (guessedNum > 13) {  // Guessed too high
       guessedNum = parseInt(prompt("Try lower. You have " + triesRemaining + " guess(es) left."));
-      triesRemaining--;
     } else if (guessedNum < 13) {  // Guesse too low
       guessedNum = parseInt(prompt("Try higher. You have " + triesRemaining + " guess(es) left."));
-      triesRemaining--;
     } else if (guessedNum === 13) { // Guesses correct!
       triesRemaining = -5;    // Dummy value, just to exit the while loop
     }
 
-    // Identical to above: forces user to input a number
-    // May not need(?) Didn't test out
-    while(isNaN(guessedNum)) {
-      guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
-    }
-
+    triesRemaining--;
   }
 
   // Test for !== 13 required, else anything on last guess is considered losing
   if (triesRemaining === 0 && guessedNum !== 13) {
     alert("You're out of guesses! My favorite number is 13.");
-  } else {  // i.e. triesRemaining == 0 and last guess was correct
+  } else {  // guess was correct
     numCorrect++;
-    alert("That's right! I was born on the 13th. You've gotten " + numCorrect + " question(s) correct so far.");
+    alert("That's right! My favorite number is 13. You've gotten " + numCorrect + " question(s) correct so far.");
   }
 
   // // Question 7
