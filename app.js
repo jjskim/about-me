@@ -113,8 +113,9 @@ if (wantToPlay === "n" || wantToPlay === "no") {
   }
 
   // Question 6
+
   var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You have 4 tries"));
-  var triesRemaining = 3;  // This starts at 3 since the user JUST guessed above (prompt)
+  var triesRemaining = 3;  // This starts at 3 since the user JUST guessed above
 
   while (triesRemaining >= 0) {
 
@@ -128,9 +129,9 @@ if (wantToPlay === "n" || wantToPlay === "no") {
       if (guessedNum < 1 || guessedNum > 20) { // User guesses out of range
         guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
       } else if (guessedNum > 13) {  // Guessed too high
-        guessedNum = parseInt(prompt("Try lower. You have " + triesRemaining + " guess(es) left."));
+        guessedNum = parseInt(prompt("Too high. You have " + triesRemaining + " guess(es) left."));
       } else if (guessedNum < 13) {  // Guesse too low
-        guessedNum = parseInt(prompt("Try higher. You have " + triesRemaining + " guess(es) left."));
+        guessedNum = parseInt(prompt("Too low. You have " + triesRemaining + " guess(es) left."));
       } else if (guessedNum === 13) { // Guesses correct!
         triesRemaining = -5;    // Dummy value, just to exit the while loop
       }
@@ -145,7 +146,8 @@ if (wantToPlay === "n" || wantToPlay === "no") {
     triesRemaining--;
   }
 
-  // // Question 7
+  // Question 7
+
   var sports = ["basketball", "boxing", "soccer", "tennis"];
   var sportsGuess = prompt("Last question: I love watching sports. Can you guess one of my favorites? You get 6 guesses.").toLowerCase();
   var sportGuessesLeft = 5; // Starts at 5 since the first guess is above
