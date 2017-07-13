@@ -16,138 +16,127 @@ if (wantToPlay === "n" || wantToPlay === "no") {
 
   var numCorrect = 0;
 
+  var answerYes = ['yes', 'y'];
+  var answerNo = ['no', 'n'];
+
   // Question 1
 
-  var haveSiblings = prompt("Question 1: Am I an only child?").toLowerCase();
 
-  console.log("User response to question 1 is " + haveSiblings + " (initial input)");
-
-  while (haveSiblings !== "y" && haveSiblings !== "yes" && haveSiblings !== "n" && haveSiblings !== "no") {
-    haveSiblings = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
-  }
-
-  console.log("User response to question 1 is now " + haveSiblings + " (corrected, if needed)");
-        // should always be "y, yes, n, or no" after the while loop
-
-  if (haveSiblings === "y" || haveSiblings === "yes") {
-    numCorrect++;
-    alert("Right! I have one older brother and one younger sister. You've gotten " + numCorrect + " question correct so far.");
+function rightAnswer(response, answer, msgCorrect, msgWrong) {
+  if (answer.indexOf(response) === -1) {
+    alert(msgWrong + "You've gotten " + numCorrect + " question(s) correct so far.");
   } else {
-    alert("Nope! I have one older brother and one younger sister. You've gotten " + numCorrect + " questions correct so far.");
+    numCorrect++;
+    alert(msgCorrect + "You've gotten " + numCorrect + " question(s) correct so far.");
   }
+}
+
+function validAnswer(response) {
+  while (response !== "y" && response !== "yes" && response !== "n" && response !== "no") {
+    response = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
+  }
+}
+
+function question1() {
+  var haveSiblings = prompt("Question 1: Am I an only child?").toLowerCase();
+  console.log("User response to question 1 is " + haveSiblings + " (initial input)");
+  validAnswer(haveSiblings);
+  console.log("User response to question 1 is now " + haveSiblings + " (corrected, if needed)");
+  var q1Correct = "Right! I have one older brother and one younger sister. ";
+  var q1Wrong = "No. I have one older brother and one younger sister. ";
+  rightAnswer(haveSiblings, answerYes, q1Correct, q1Wrong);
+}
+question1();
 
   // Question 2
 
-  var canDrive = prompt("Question 2: Do I have a driver's license?").toLowerCase();
-
-  console.log("User response to question 1 is " + canDrive + " (initial input)");
-
-  while (canDrive !== "y" && canDrive !== "yes" && canDrive !== "n" && canDrive !== "no") {
-    canDrive = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
+  function question2() {
+    var canDrive = prompt("Question 2: Do I have a driver's license?").toLowerCase();
+    console.log("User response to question 2 is " + canDrive + " (initial input)");
+    validAnswer(canDrive);
+    console.log("User response to question 2 is now " + canDrive + " (corrected, if needed)");
+    var q2Correct = "That's right! I got a 90/100 on my driving test (trying to paraellel park in a Eurovan sucks). ";
+    var q2Wrong = "No, that's wrong. ";
+    rightAnswer(canDrive, answerYes, q2Correct, q2Wrong);
   }
-
-  console.log("User response to question 1 is now " + canDrive + " (corrected, if needed)");
-
-  if (canDrive === "y" || canDrive === "yes") {
-    numCorrect++;
-    alert("That's right! I got a 90/100 on my driving test (trying to parallel park in a Eurovan sucks). You've gotten " + numCorrect + " question(s) correct so far.");
-  } else {
-    alert("No, that's wrong. You've gotten " + numCorrect + " question(s) correct so far.");
-  }
+  question2();
 
   // Question 3
 
-  var brokenBones = prompt("Question 3: Have I broken any bones?").toLowerCase();
-
-  console.log("User response to question 1 is " + brokenBones + " (initial input)");
-
-  while (brokenBones !== "y" && brokenBones !== "yes" && brokenBones !== "n" && brokenBones !== "no") {
-    brokenBones = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
+  function question3() {
+    var brokenBones = prompt("Question 3: Have I broken any bones?").toLowerCase();
+    console.log("User response to question 3 is " + brokenBones + " (initial input)");
+    validAnswer(brokenBones);
+    console.log("User response to question 3 is now " + brokenBones + " (corrected, if needed)");
+    var q3Correct = "Correct. I broke my right ulna when I was 7. ";
+    var q3Wrong = "Wrong. I broke my right ulna when I was 7. ";
+    rightAnswer(brokenBones, answerYes, q3Correct, q3Wrong);
   }
+  question3();
 
-  console.log("User response to question 1 is now " + brokenBones + " (corrected, if needed)");
-
-  if (brokenBones === "y" || brokenBones === "yes") {
-    numCorrect++;
-    alert("Correct. I broke my right ulna when I was 7. You've gotten " + numCorrect + " question(s) correct so far.");
-  } else {
-    alert("Wrong. I broke my right ulna when I was 7. You've gotten " + numCorrect + " question(s) correct so far.");
-  }
 
   // Question 4
 
-  var playInstrument = prompt("Question 4: Do I play any instruments?").toLowerCase();
-
-  console.log("User response to question 1 is " + playInstrument + " (initial input)");
-
-  while (playInstrument !== "y" && playInstrument !== "yes" && playInstrument !== "n" && playInstrument !== "no") {
-    playInstrument = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
+  function question4() {
+    var playInstrument = prompt("Question 4: Do I play any instruments?").toLowerCase();
+    console.log("User response to question 4 is " + playInstrument + " (initial input)");
+    validAnswer(playInstrument);
+    console.log("User response to question 4 is now " + playInstrument + " (corrected, if needed)");
+    var q4Correct = "Right. Unfortunately I do not play any instruments. ";
+    var q4Wrong = "Wrong. Unfortunately I do not play any instruments. ";
+    rightAnswer(playInstrument, answerNo, q4Correct, q4Wrong);
   }
+  question4();
 
-  console.log("User response to question 1 is now " + playInstrument + " (corrected, if needed)");
-
-  if (playInstrument === "y" || playInstrument === "yes") {
-    alert("Wrong. Unfortunately, I do not play any instruments. You've gotten " + numCorrect + " question(s) correct so far.");
-  } else {
-    numCorrect++;
-    alert("Right. Unfortunately, I do not play any instruments. You've gotten " + numCorrect + " question(s) correct so far.");
-  }
 
   // Question 5
 
-  var havePets = prompt("Question 5: Do I have any pets?").toLowerCase();
-
-  console.log("User response to question 1 is " + havePets + " (initial input)");
-
-  while (havePets !== "y" && havePets !== "yes" && havePets !== "n" && havePets !== "no") {
-    havePets = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
+  function question5() {
+    var havePets = prompt("Question 5: Do I have any pets?").toLowerCase();
+    console.log("User response to question 5 is " + havePets + " (initial input)");
+    validAnswer(havePets);
+    console.log("User response to question 5 is now " + havePets + " (corrected, if needed)");
+    var q5Correct = "Correct. I don't have any pets right now, maybe someday. ";
+    var q5Wrong = "No, but maybe someday. ";
+    rightAnswer(havePets, answerNo, q5Correct, q5Wrong);
   }
-
-  console.log("User response to question 1 is now " + havePets + " (corrected, if needed)");
-
-  if (havePets === "y" || havePets === "yes") {
-    alert("No, but maybe someday. You've goten " + numCorrect + " question(s) correct so far.");
-  } else {
-    numCorrect++;
-    alert("Correct. I don't have any pets right now, maybe someday. You've gotten " + numCorrect + " question(s) correct so far.");
-  }
+  question5();
 
   // Question 6
 
-  var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You have 4 tries"));
-  var triesRemaining = 3;  // This starts at 3 since the user JUST guessed above
+  function question6() {
+    var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You have 4 tries"));
+    var triesRemaining = 3;  // This starts at 3 since the user JUST guessed above
 
-  while (triesRemaining >= 0) {
+    while (triesRemaining >= 0) {
 
-    // Forces the user to input a number
-    // User is not penalized for entering a wrong guess i.e. triesRemaining NOT decremented
-    while(isNaN(guessedNum)) {
-      guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
-    }
-
-    if (triesRemaining > 0) {
-      if (guessedNum < 1 || guessedNum > 20) { // User guesses out of range
-        guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
-      } else if (guessedNum > 13) {  // Guessed too high
-        guessedNum = parseInt(prompt("Too high. You have " + triesRemaining + " guess(es) left."));
-      } else if (guessedNum < 13) {  // Guesse too low
-        guessedNum = parseInt(prompt("Too low. You have " + triesRemaining + " guess(es) left."));
-      } else if (guessedNum === 13) { // Guesses correct!
-        triesRemaining = -1;    // Dummy value, just to exit the while loop
+      // Forces the user to input a number
+      // User is not penalized for entering a wrong guess i.e. triesRemaining NOT decremented
+      while(isNaN(guessedNum)) {
+        guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
       }
-    } else { // triesRemaining = 0, i.e. it is last guess
-      if (guessedNum !== 13) { // last guess was wrong
-        alert("You're out of guesses! My favorite number is 13.");
-      } else {  // guess was correct
-        numCorrect++;
-        alert("That's right! My favorite number is 13. You've gotten " + numCorrect + " question(s) correct so far.");
-      }
+        if (triesRemaining === 0 && guessedNum !== 13) {
+          alert("You\'re out of guesses. My favorite number is 13.");
+        } else if (guessedNum < 1 || guessedNum > 20) { // User guesses out of range
+          guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
+        } else if (guessedNum > 13) {  // Guessed too high
+          guessedNum = parseInt(prompt("Too high. You have " + triesRemaining + " guess(es) left."));
+        } else if (guessedNum < 13) {  // Guesse too low
+          guessedNum = parseInt(prompt("Too low. You have " + triesRemaining + " guess(es) left."));
+        } else if (guessedNum === 13) { // Guesses correct!
+          numCorrect++;
+          alert("That's right! My favorite number is 13. You've gotten " + numCorrect + " question(s) correct so far.");
+          triesRemaining = -1;    // Dummy value, just to exit the while loop
+        }
+      triesRemaining--;
     }
-    triesRemaining--;
   }
+  question6();
+
 
   // Question 7
 
+function question7() {
   var sports = ["basketball", "boxing", "soccer", "tennis"];
   var sportsGuess = prompt("Last question: I love watching sports. Can you guess one of my favorites? You get 6 guesses.").toLowerCase();
   var sportGuessesLeft = 5; // Starts at 5 since the first guess is above
@@ -164,6 +153,9 @@ if (wantToPlay === "n" || wantToPlay === "no") {
     }
     sportGuessesLeft--;
   }
+}
+question7();
+
 
   // End of game message
   if (numCorrect === 0) {
