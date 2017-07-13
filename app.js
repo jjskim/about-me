@@ -114,70 +114,60 @@ if (wantToPlay === "n" || wantToPlay === "no") {
 
   // Question 6
   var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You have 4 tries"));
-
-  // while(isNaN(guessedNum)) {
-  //   guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
-  // }
-
-  var triesRemaining = 3;
+  var triesRemaining = 3;  // This starts at 3 since the user JUST guessed above (prompt)
 
   while (triesRemaining > 0) {
 
-    // triesRemaining--;
-
+    // Forces the user to input a number
+    // User is not penalized for entering a wrong guess i.e. triesRemaining NOT decremented
     while(isNaN(guessedNum)) {
       guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
     }
 
-    if (guessedNum < 1 || guessedNum > 20) {
-      // triesRemaining--;
+    if (guessedNum < 1 || guessedNum > 20) { // User guesses out of range
       guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
       triesRemaining--;
-    } else if (guessedNum > 13) {
-      // triesRemaining--;
+    } else if (guessedNum > 13) {  // Guessed too high
       guessedNum = parseInt(prompt("Try lower. You have " + triesRemaining + " guess(es) left."));
       triesRemaining--;
-    } else if (guessedNum < 13) {
-      // triesRemaining--;
+    } else if (guessedNum < 13) {  // Guesse too low
       guessedNum = parseInt(prompt("Try higher. You have " + triesRemaining + " guess(es) left."));
       triesRemaining--;
-    } else if (guessedNum === 13) {
-      triesRemaining = -5;
-      // numCorrect++;
-      // alert("That's right! I was born on the 13th. You've gotten " + numCorrect + " question(s) correct so far.");
+    } else if (guessedNum === 13) { // Guesses correct!
+      triesRemaining = -5;    // Dummy value, just to exit the while loop
     }
 
+    // Identical to above: forces user to input a number
+    // May not need(?) Didn't test out
     while(isNaN(guessedNum)) {
       guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
     }
 
   }
 
+  // Test for !== 13 required, else anything on last guess is considered losing
   if (triesRemaining === 0 && guessedNum !== 13) {
     alert("You're out of guesses! My favorite number is 13.");
-  } else {
+  } else {  // i.e. triesRemaining == 0 and last guess was correct
     numCorrect++;
     alert("That's right! I was born on the 13th. You've gotten " + numCorrect + " question(s) correct so far.");
   }
 
   // // Question 7
   var sports = ["basketball", "boxing", "soccer", "tennis"];
-  var sportsGuess = prompt("Last question: I love watching sports. Can you guess one of my favorites?").toLowerCase();
-
+  var sportsGuess = prompt("Last question: I love watching sports. Can you guess one of my favorites? You get 6 guesses.").toLowerCase();
   var sportGuessesLeft = 6;
 
-  while (sportGuessesLeft > 1) {
-    if (sports.indexOf(sportsGuess) === -1) {
-      sportGuessesLeft--;
+  while (sportGuessesLeft > 0) {
+    sportGuessesLeft--;
+    if (sports.indexOf(sportsGuess) === -1 && sportGuessesLeft !== 0) { // wrong guess
       sportsGuess = prompt("Nope, that's not one of them. You have " + sportGuessesLeft + " guess(es) left.").toLowerCase();
-    } else {
-      sportGuessesLeft = -1;
+    } else if (sports.indexOf(sportsGuesses) === -1 && sportGuessesLeft === 0) { // last AND wrong guess
+      alert("You're out of guesses! My favorite sports are basketball, boxing, soccer, and tennis.");
+    } else {                  //  an index other than -1 is returned, ie. it's IN the array
+      sportGuessesLeft = -1;  // dummy value, just to exit the while loop
       numCorrect++;
       alert("Yep correct! My favorite sports are basketball, boxing, soccer, and tennis.");
-    }
-
-    if (sportGuessesLeft === 1) {
-      alert("Nope, my favorite sports are basketball, boxing, soccer, and tennis.");
     }
   }
 
