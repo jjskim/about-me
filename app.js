@@ -133,7 +133,7 @@ if (wantToPlay === "n" || wantToPlay === "no") {
       } else if (guessedNum < 13) {  // Guesse too low
         guessedNum = parseInt(prompt("Too low. You have " + triesRemaining + " guess(es) left."));
       } else if (guessedNum === 13) { // Guesses correct!
-        triesRemaining = -5;    // Dummy value, just to exit the while loop
+        triesRemaining = -1;    // Dummy value, just to exit the while loop
       }
     } else { // triesRemaining = 0, i.e. it is last guess
       if (guessedNum !== 13) { // last guess was wrong
