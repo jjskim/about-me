@@ -116,7 +116,7 @@ if (wantToPlay === "n" || wantToPlay === "no") {
   var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You have 4 tries"));
   var triesRemaining = 3;  // This starts at 3 since the user JUST guessed above (prompt)
 
-  while (triesRemaining > 0) {
+  while (triesRemaining >= 0) {
 
     // Forces the user to input a number
     // User is not penalized for entering a wrong guess i.e. triesRemaining NOT decremented
@@ -124,49 +124,49 @@ if (wantToPlay === "n" || wantToPlay === "no") {
       guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
     }
 
-    if (guessedNum < 1 || guessedNum > 20) { // User guesses out of range
-      guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
-    } else if (guessedNum > 13) {  // Guessed too high
-      guessedNum = parseInt(prompt("Try lower. You have " + triesRemaining + " guess(es) left."));
-    } else if (guessedNum < 13) {  // Guesse too low
-      guessedNum = parseInt(prompt("Try higher. You have " + triesRemaining + " guess(es) left."));
-    } else if (guessedNum === 13) { // Guesses correct!
-      triesRemaining = -5;    // Dummy value, just to exit the while loop
+    if (triesRemaining > 0) {
+      if (guessedNum < 1 || guessedNum > 20) { // User guesses out of range
+        guessedNum = parseInt(prompt("No, remember it's between 1 and 20. You have " + triesRemaining + " guess(es) left."));
+      } else if (guessedNum > 13) {  // Guessed too high
+        guessedNum = parseInt(prompt("Try lower. You have " + triesRemaining + " guess(es) left."));
+      } else if (guessedNum < 13) {  // Guesse too low
+        guessedNum = parseInt(prompt("Try higher. You have " + triesRemaining + " guess(es) left."));
+      } else if (guessedNum === 13) { // Guesses correct!
+        triesRemaining = -5;    // Dummy value, just to exit the while loop
+      }
+    } else { // triesRemaining = 0, i.e. it is last guess
+      if (guessedNum !== 13) { // last guess was wrong
+        alert("You're out of guesses! My favorite number is 13.");
+      } else {  // guess was correct
+        numCorrect++;
+        alert("That's right! My favorite number is 13. You've gotten " + numCorrect + " question(s) correct so far.");
+      }
     }
-
     triesRemaining--;
-  }
-
-  // Test for !== 13 required, else anything on last guess is considered losing
-  if (triesRemaining === 0 && guessedNum !== 13) {
-    alert("You're out of guesses! My favorite number is 13.");
-  } else {  // guess was correct
-    numCorrect++;
-    alert("That's right! My favorite number is 13. You've gotten " + numCorrect + " question(s) correct so far.");
   }
 
   // // Question 7
   var sports = ["basketball", "boxing", "soccer", "tennis"];
   var sportsGuess = prompt("Last question: I love watching sports. Can you guess one of my favorites? You get 6 guesses.").toLowerCase();
-  var sportGuessesLeft = 6;
+  var sportGuessesLeft = 5; // Starts at 5 since the first guess is above
 
-  while (sportGuessesLeft > 0) {
-    sportGuessesLeft--;
+  while (sportGuessesLeft >= 0) {
     if (sports.indexOf(sportsGuess) === -1 && sportGuessesLeft !== 0) { // wrong guess
       sportsGuess = prompt("Nope, that's not one of them. You have " + sportGuessesLeft + " guess(es) left.").toLowerCase();
-    } else if (sports.indexOf(sportsGuesses) === -1 && sportGuessesLeft === 0) { // last AND wrong guess
+    } else if (sports.indexOf(sportsGuess) === -1 && sportGuessesLeft === 0) { // last AND wrong guess
       alert("You're out of guesses! My favorite sports are basketball, boxing, soccer, and tennis.");
-    } else {                  //  an index other than -1 is returned, ie. it's IN the array
-      sportGuessesLeft = -1;  // dummy value, just to exit the while loop
+    } else {     //  an index other than -1 is returned, ie. it's IN the array
       numCorrect++;
       alert("Yep correct! My favorite sports are basketball, boxing, soccer, and tennis.");
+      sportGuessesLeft = -1;  // dummy value, just to exit the while loop
     }
+    sportGuessesLeft--;
   }
 
   // End of game message
   if (numCorrect === 0) {
     alert("You got 0 questions correct, " + user + ". Better luck next time!");
   } else {
-    alert("Good job " + user + " you got " + numCorrect + " out of 7 questions correct!");
+    alert("Good job, " + user + "! You got " + numCorrect + " out of 7 questions correct!");
   }
 }
