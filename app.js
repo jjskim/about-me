@@ -1,117 +1,86 @@
 "use strict";
 
+// Takes in the user's input, and an array of valid responses
+//    checks if the user input is a valid string, else repeats prompt until one is entered and returns it
+function checkValidString(userInput, validInputs) {
+  while (validInputs.indexOf(userInput) === -1) {
+    userInput = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
+  }
+  return userInput;
+}
+
+// Start of prompt
 var user = prompt("Hi there, what's your name?");
 console.log("User's name is " + user);
 
-var wantToPlay = prompt("Nice to meet you, " + user + "! Would you like to play a game? (Type \'yes\' or \'no\')").toLowerCase();
+var wantToPlay = prompt("Nice to meet you, " + user + "! Do you want to play a guessing game about me? (Type \'yes\' or \'no\')").toLowerCase();
 
-while (wantToPlay !== "y" && wantToPlay !== "yes" && wantToPlay !== "n" && wantToPlay !== "no") {
-  wantToPlay = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
-}
+wantToPlay = checkValidString(wantToPlay, ["yes", "no", "y", "n"]);
 
-if (wantToPlay === "n" || wantToPlay === "no") {
+if (wantToPlay === "n" || wantToPlay === "no") {  // end -- no game
   alert("Aww, that's too bad. Maybe next time!");
-} else {
+} else if (wantToPlay == "y" || wantToPlay === "yes") {  // continue - play game
   alert("Great! Let's get started then!");
+  var numCorrect = 0; // var to count correct responses
 
-  var numCorrect = 0;
+  // Array of questions to be asked
+  var questionsArray = [];
+  questionsArray.push("Question 1: Am I an only child?");
+  questionsArray.push("Question 2: Do I have a driver's license?");
+  questionsArray.push("Question 3: Have I broken any bones?");
+  questionsArray.push("Question 4: Do I play any instruments?");
+  questionsArray.push("Question 5: Do I have any pets?");
 
-  var answerYes = ['yes', 'y'];
-  var answerNo = ['no', 'n'];
+  // Array of accepted answers
+  var answersArray = [];
+  answersArray.push(["no", "n"]);
+  answersArray.push(["yes", "y"]);
+  answersArray.push(["yes", "y"]);
+  answersArray.push(["no", "n"]);
+  answersArray.push(["no", "n"]);
 
-  // Question 1
+  // Array of responses to alert, based on user's answer
+  var responsesArray = [];
+  responsesArray.push(["Right! I have one older brother and one younger sister.", "No. I have one older brother and one younger sister."]);
+  responsesArray.push(["That's right! I got a 90/100 on my driving test (trying to paraellel park in a Eurovan sucks).", "No, that's wrong."]);
+  responsesArray.push(["Correct. I broke my right ulna when I was 7.", "Wrong. I broke my right ulna when I was 7."]);
+  responsesArray.push(["Right. Unfortunately I do not play any instruments.", "Wrong. Unfortunately I do not play any instruments."]);
+  responsesArray.push(["Correct. I don't have any pets right now, maybe someday.", "No, but maybe someday."]);
 
 
-function rightAnswer(response, answer, msgCorrect, msgWrong) {
-  if (answer.indexOf(response) === -1) {
-    alert(msgWrong + "You've gotten " + numCorrect + " question(s) correct so far.");
-  } else {
-    numCorrect++;
-    alert(msgCorrect + "You've gotten " + numCorrect + " question(s) correct so far.");
+  // Asks question from questionsArray, compares user's response to corresponding answer from
+  //    answersArray, and prints appropriate response from responsesArray
+  //    index is used to determine what question to ask, what is the correct answer, & how to respond
+  function askYesNoQuestion(index) {
+    var userResponse = prompt(questionsArray[index]).toLowerCase();
+    checkValidString(userResponse, ["yes", "no", "y", "n"]);
+    if (userResponse === answersArray[index][0] || userResponse === answersArray[index][1]) {
+      numCorrect++;
+      alert(responsesArray[index][0] + " You\'ve gotten " + numCorrect + " question(s) right so far!");
+    } else {
+      alert(responsesArray[index][1]);
+    }
   }
-}
 
-function validAnswer(response) {
-  while (response !== "y" && response !== "yes" && response !== "n" && response !== "no") {
-    response = prompt("I'm sorry, I don't understand. Please type \'yes\' or \'no\'").toLowerCase();
+  // Asks the first 5 yes/no questions in questionsArray
+  //    checks answers and responds accordingly to the user
+  function questionGame() {
+    for (var i = 0; i < questionsArray.length; i++) {
+      askYesNoQuestion(i);
+    }
   }
-}
 
-function question1() {
-  var haveSiblings = prompt("Question 1: Am I an only child?").toLowerCase();
-  console.log("User response to question 1 is " + haveSiblings + " (initial input)");
-  validAnswer(haveSiblings);
-  console.log("User response to question 1 is now " + haveSiblings + " (corrected, if needed)");
-  var q1Correct = "Right! I have one older brother and one younger sister. ";
-  var q1Wrong = "No. I have one older brother and one younger sister. ";
-  rightAnswer(haveSiblings, answerYes, q1Correct, q1Wrong);
-}
-question1();
-
-  // Question 2
-
-  function question2() {
-    var canDrive = prompt("Question 2: Do I have a driver's license?").toLowerCase();
-    console.log("User response to question 2 is " + canDrive + " (initial input)");
-    validAnswer(canDrive);
-    console.log("User response to question 2 is now " + canDrive + " (corrected, if needed)");
-    var q2Correct = "That's right! I got a 90/100 on my driving test (trying to paraellel park in a Eurovan sucks). ";
-    var q2Wrong = "No, that's wrong. ";
-    rightAnswer(canDrive, answerYes, q2Correct, q2Wrong);
-  }
-  question2();
-
-  // Question 3
-
-  function question3() {
-    var brokenBones = prompt("Question 3: Have I broken any bones?").toLowerCase();
-    console.log("User response to question 3 is " + brokenBones + " (initial input)");
-    validAnswer(brokenBones);
-    console.log("User response to question 3 is now " + brokenBones + " (corrected, if needed)");
-    var q3Correct = "Correct. I broke my right ulna when I was 7. ";
-    var q3Wrong = "Wrong. I broke my right ulna when I was 7. ";
-    rightAnswer(brokenBones, answerYes, q3Correct, q3Wrong);
-  }
-  question3();
-
-
-  // Question 4
-
-  function question4() {
-    var playInstrument = prompt("Question 4: Do I play any instruments?").toLowerCase();
-    console.log("User response to question 4 is " + playInstrument + " (initial input)");
-    validAnswer(playInstrument);
-    console.log("User response to question 4 is now " + playInstrument + " (corrected, if needed)");
-    var q4Correct = "Right. Unfortunately I do not play any instruments. ";
-    var q4Wrong = "Wrong. Unfortunately I do not play any instruments. ";
-    rightAnswer(playInstrument, answerNo, q4Correct, q4Wrong);
-  }
-  question4();
-
-
-  // Question 5
-
-  function question5() {
-    var havePets = prompt("Question 5: Do I have any pets?").toLowerCase();
-    console.log("User response to question 5 is " + havePets + " (initial input)");
-    validAnswer(havePets);
-    console.log("User response to question 5 is now " + havePets + " (corrected, if needed)");
-    var q5Correct = "Correct. I don't have any pets right now, maybe someday. ";
-    var q5Wrong = "No, but maybe someday. ";
-    rightAnswer(havePets, answerNo, q5Correct, q5Wrong);
-  }
-  question5();
+  questionGame();
 
   // Question 6
-
   function question6() {
-    var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You have 4 tries"));
+    var guessedNum = parseInt(prompt("Question 6: What is my favorite number? Hint: It's between 1 and 20. You get 4 guesses."));
     var triesRemaining = 3;  // This starts at 3 since the user JUST guessed above
 
     while (triesRemaining >= 0) {
 
       // Forces the user to input a number
-      // User is not penalized for entering a wrong guess i.e. triesRemaining NOT decremented
+      //    User is not penalized for entering a wrong guess
       while(isNaN(guessedNum)) {
         guessedNum = parseInt(prompt("That's not a number! Please enter a number."));
       }
@@ -131,30 +100,31 @@ question1();
       triesRemaining--;
     }
   }
+
   question6();
 
 
   // Question 7
+  function question7() {
+    var sports = ["basketball", "boxing", "soccer", "tennis"];
+    var sportsGuess = prompt("Last question: I love watching sports. Can you guess one of my favorites? You get 6 guesses.").toLowerCase();
+    var sportGuessesLeft = 5; // Starts at 5 since the first guess is above
 
-function question7() {
-  var sports = ["basketball", "boxing", "soccer", "tennis"];
-  var sportsGuess = prompt("Last question: I love watching sports. Can you guess one of my favorites? You get 6 guesses.").toLowerCase();
-  var sportGuessesLeft = 5; // Starts at 5 since the first guess is above
-
-  while (sportGuessesLeft >= 0) {
-    if (sports.indexOf(sportsGuess) === -1 && sportGuessesLeft !== 0) { // wrong guess
-      sportsGuess = prompt("Nope, that's not one of them. You have " + sportGuessesLeft + " guess(es) left.").toLowerCase();
-    } else if (sports.indexOf(sportsGuess) === -1 && sportGuessesLeft === 0) { // last AND wrong guess
-      alert("You're out of guesses! My favorite sports are basketball, boxing, soccer, and tennis.");
-    } else {     //  an index other than -1 is returned, ie. it's IN the array
-      numCorrect++;
-      alert("Yep correct! My favorite sports are basketball, boxing, soccer, and tennis.");
-      sportGuessesLeft = -1;  // dummy value, just to exit the while loop
+    while (sportGuessesLeft >= 0) {
+      if (sports.indexOf(sportsGuess) === -1 && sportGuessesLeft !== 0) { // wrong guess
+        sportsGuess = prompt("Nope, that's not one of them. You have " + sportGuessesLeft + " guess(es) left.").toLowerCase();
+      } else if (sports.indexOf(sportsGuess) === -1 && sportGuessesLeft === 0) { // last AND wrong guess
+        alert("You're out of guesses! My favorite sports are basketball, boxing, soccer, and tennis.");
+      } else {     //  an index other than -1 is returned, ie. it's IN the array
+        numCorrect++;
+        alert("Yep correct! My favorite sports are basketball, boxing, soccer, and tennis.");
+        sportGuessesLeft = -1;  // dummy value, just to exit the while loop
+      }
+      sportGuessesLeft--;
     }
-    sportGuessesLeft--;
   }
-}
-question7();
+
+  question7();
 
 
   // End of game message
