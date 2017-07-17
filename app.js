@@ -69,7 +69,7 @@ if (wantToPlay === "n" || wantToPlay === "no") {  // end -- no game
       askYesNoQuestion(i);
     }
   }
-
+  
   questionGame();
 
   // Question 6

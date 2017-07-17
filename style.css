@@ -4,52 +4,42 @@
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  font-family: Helvetica, Arial, sans-serif;
+  color: white;
 }
 
 body {
-  background-color: Silver;
+  letter-spacing: 2px;
+  background-image: url(http://i.imgur.com/Wqtrdb2.jpg);
 }
 
 header {
   border-style: solid;
   border-radius: 10px;
-  background-color: MediumSeaGreen;
 }
 
 h1 {
   text-align: center;
-  font-family: sans-serif;
   font-stretch: semi-expanded;
-  color: LightGray;
-}
-
-p {
-  margin: 10px;
-  /*display: inline-block;*/
-  padding: 10px;
-  font-size: 18px;
-  border-style: solid;
-  border-radius: 15px;
-  background-color: LightGray;
 }
 
 #bio {
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 10px;
 }
 
 #education {
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 10px;
 }
 
 #work-experience {
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 10px;
 }
 
 #cities {
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 10px;
 }
 
